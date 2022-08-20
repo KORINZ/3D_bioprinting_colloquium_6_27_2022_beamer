@@ -1,0 +1,101 @@
+\documentclass[sansserif, mathserif, 12pt, aspectratio=169]{beamer}
+
+% Package for advanced maths (almost always needed) 
+\usepackage{amsmath}
+
+% Package for animations
+\usepackage{animate}
+
+% There are many different themes available for Beamer:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+
+\usetheme{Boadilla}
+
+% Change items to triangles from bullet points
+\setbeamertemplate{itemize item}[triangle]
+
+% Change enumerate ball shape to the default numbering. 
+\setbeamertemplate{enumerate item}[default]
+
+% Define custom colours, so you can have a consistent colour scheme.
+% I like to use dark blue, with red and green for emphasis.  
+\definecolor{darkblue}{RGB}{0,33,71}
+\definecolor{darkred}{RGB}{183,18,51}
+\definecolor{darkgreen}{RGB}{0,100,0}
+
+% Set the main frame color to darkblue. Use whatever palette you want!
+\setbeamercolor{titlelike}{fg=darkblue}
+\setbeamercolor{frametitle}{fg=darkblue}
+\setbeamercolor*{structure}{fg=darkblue}
+
+% Get rid of the annoying navigation bar. It looks unprofessional. 
+\beamertemplatenavigationsymbolsempty
+\setbeamerfont{footnote}{size=\scriptsize}
+%gets rid of bottom navigation bars
+%\setbeamertemplate{footline}[page number]
+%gets rid of navigation symbols
+%\setbeamertemplate{navigation symbols}{}
+
+\usepackage[backend=biber, style=authoryear]{biblatex}
+\addbibresource{references.bib}
+\AtEveryBibitem{%
+  \clearfield{note}%
+}
+\DeclareCiteCommand{\cite}
+  {\printfield{prenote}}
+  {\printnames{labelname}
+  \ifentrytype{article}
+    {\newunit{\addcomma}\printfield{journaltitle}}
+    {}%
+  \newunit{\addcomma}
+  \textbf{\printfield{volume}}(\printfield{number})
+  \newunit{\addcomma}
+  \printfield{pages}
+  \newunit{\addcomma}
+  \printfield{labelyear}%
+  }
+  {\addsemicolon\addspace}
+  {\printfield{postnote}}
+
+\setbeamerfont{block body}{size=\footnotesize}
+
+\usepackage{textpos}
+\usepackage{color}
+\usepackage{xspace}
+\newcommand{\openfoam}{Open\nolinebreak\hspace{-.1em}{\color{blue}\Large$\nabla$}\nolinebreak\hspace{-.1em}FOAM\textsuperscript{${\circledR}$}\xspace}
+
+\usepackage{CJKutf8}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, tikzmark}
+
+\title[Numerical Investigation of Bioprinting Printheads]{\normalsize A Numerical Investigation of Stresses, Printing Efficiency, Printability, and Cell Viability in Nozzle Printheads for 3D Extrusion Bioprinting}
+
+\subtitle{\small 3D押し出しバイオプリンティングに関する流体せん断応力、印刷効率、印刷適性、細胞生存率に関する数値解析}
+
+\author[Okano Lab.]{
+                    ZHANG, Colin
+                    \texorpdfstring{\\ M1}{}
+                    \texorpdfstring{\\ Okano Lab.}{}
+                    } 
+
+\date{June 2022}
+
+\addtobeamertemplate{frametitle}{}{%
+\begin{textblock*}{100mm}(.96\textwidth,-0.5cm)
+\includegraphics[height=0.70cm,width=0.70cm]{images/Osaka_University_logo.png}
+\end{textblock*}}
+
+\newcommand{\credit}[1]{\par\hfill \normalsize ~\itshape#1}
+
+\begin{document}
+
+\begin{frame}[noframenumbering]{\textit{Colloquium}}
+\begin{CJK}{UTF8}{ipxm}
+  \titlepage
+\end{CJK}
+\credit{{\fontfamily{cmr}\selectfont\rm\textbf{\color{darkblue}\LaTeX}}}\hspace{-2mm}
+\end{frame}
+
+\input{mainBody.tex}
+
+\end{document}
